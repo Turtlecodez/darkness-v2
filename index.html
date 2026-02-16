@@ -2,102 +2,411 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-    <title>darkness v2</title>
+    <title id="title">darkness</title>
+    <div id="favicons">
+        <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    </div>
 </head>
 <body>
     <header>
         <div class="navbar">
-            <img src="./assets/darkness-logo.png" alt="darkness logo" width="150px" class="logo">
-            <a class="home-page-link">home</a>
+            <img src="./assets/darkness-logo.png" alt="darkness logo" width="150px" id="logo" class="home-page-link">
+            <a id="home-page-link">home</a>
             <a id="games-page-link">games</a>
-            <a href="index.html">page 3</a>
-            <a href="index.html">page 4</a>
-            <a href="index.html">page 5</a>
+            <a id="proxies-page-link">proxies</a>
+            <a id="applications-page-link">applications</a>
+            <a id="contact-page-link">contact</a>
         </div>
     </header>
-
+    <h1 id="error-message">page loading...</h1>
+    <p id="error-message-2">if this message persists, there is likely an error</p>
     <div id="home-page" hidden>
 
-        <h1 class="big-title">
-            bwaaaaa
+        <h1 class="big-title" id="home-title">
+            darkness
             <span style="font-size: 20px; position: absolute; transform: translateY(30px);">v2</span>
         </h1>
+        <p class="box-text">latest message:</p>
+        <p class="box-text" id="message-text" style="margin-bottom: 60px;"></p>
         <div class="centered-box">
-            <p class="box-title">text box :)</p>
-            <p class="box-text">text IN the box</p>
-        </div>
-
-        <div class="centered-box">
-            <p class="box-title">link box :)</p>
+            <p class="box-title">top games</p>
             <div class="flex-container">
-                <a class="box-link" href="https://google.com">link in the box</a>
-                <a class="box-link" href="https://google.com">i gotta test with a buncha links</a>
-                <a class="box-link" href="https://google.com">can't do windows xp again uuh</a>
-                <a class="box-link" href="https://google.com">arch</a>
-                <a class="box-link" href="https://google.com">debian</a>
-                <a class="box-link" href="https://google.com">ubuntu</a>
-                <a class="box-link" href="https://google.com">mint</a>
-                <a class="box-link" href="https://google.com">gnome</a>
-                <a class="box-link" href="https://google.com">fedora</a>
-                <a class="box-link" href="https://google.com">what other distros are there bro</a>
-                <a class="box-link" href="https://google.com">nyarch idk</a>
-                <a class="box-link" href="https://google.com">uwubuntu</a>
-                <a class="box-link" href="https://google.com">hannah montana linux</a>
+                <div class="game-box">
+                    <a href="games/n-gon/index.html" class="link">
+                        <img src="assets/game-logos/ngon.png">
+                        <p>n-gon</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/tombofthemask/index.html" class="link">
+                        <img src="assets/game-logos/totm.png">
+                        <p>tomb of the mask</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/getaway-shootout/index.html" class="link">
+                        <img src="assets/game-logos/getawayshootout.png">
+                        <p>getaway shootout</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/level13/index.html" class="link">
+                        <img src="assets/game-logos/level13.png">
+                        <p>level 13</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/fnf/index.html" class="link">
+                        <img src="assets/game-logos/fnf.png">
+                        <p>friday night funkin'</p>
+                    </a>
+                </div>
+            </div>
+            <p class="box-text">request a game on the contact page</p>
+        </div>
+        <div class="centered-box" style="padding-top: 20px;">
+            <p class="box-title">top proxies</p>
+            <p class="box-text">have any proxy links? donate them on the contact page!</p>
+            <div class="flex-container" style="margin-bottom: 20px; padding-top: 10px;">
+                <a href="https://canvasbackpackstore.com/" class="box-link">https://canvasbackpackstore.com/</a>
+                <a href="https://thephysedexpress.com/" class="box-link">https://thephysedexpress.com/</a>
+                <a href="https://addition.chillyparrotmath.cloudns.ch" class="box-link">https://addition.chillyparrotmath.cloudns.ch</a>
             </div>
         </div>
-
-        <div class="centered-box">
-            <p class="box-title">windows xp</p>
-            <div class="flex-container">
-                <div class="game-box">
-                    <a href="game1.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 2</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 3</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 4</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 5</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 6</p>
-                    </a>
-                </div>
-                <div class="game-box">
-                    <a href="game2.html" class="link">
-                        <img src="assets/bliss.png">
-                        <p>windows xp 7</p>
-                    </a>
-                </div>
+        <div class="centered-box" style="padding-top: 20px;">
+            <p class="box-title">alternate domains</p>
+            <div class="flex-container" style="margin-bottom: 20px; padding-top: 10px;">
+                <a href="https://darkness-site.github.io/" class="box-link">https://darkness-site.github.io/</a>
+                <a href="https://darkness-site.vercel.app/" class="box-link">https://darkness-site.vercel.app/</a>
+                <a href="https://darkness-site.netlify.app/" class="box-link">https://darkness-site.netlify.app/</a>
+                <a href="https://lightness-site.netlify.app/" class="box-link">https://lightness-site.netlify.app/</a>
+                <a href="https://lightness-site.vercel.app/" class="box-link">https://lightness-site.vercel.app/</a>
             </div>
         </div>
     </div>
 
     <div id="games-page" hidden>
-
         <h1 class="big-title">games</h1>
+        <p class="box-text" id="message-text" style="font-size: 20px; margin-bottom: 60px;">to request a game, go to the contact page</p>
+        <div class="centered-box">
+            <p class="box-title">top games</p>
+            <div class="flex-container">
+                <div class="game-box">
+                    <a href="games/n-gon/index.html" class="link">
+                        <img src="assets/game-logos/ngon.png">
+                        <p>n-gon</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/tombofthemask/index.html" class="link">
+                        <img src="assets/game-logos/totm.png">
+                        <p>tomb of the mask</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/getaway-shootout/index.html" class="link">
+                        <img src="assets/game-logos/getawayshootout.png">
+                        <p>getaway shootout</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/level13/index.html" class="link">
+                        <img src="assets/game-logos/level13.png">
+                        <p>level 13</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/fnf/index.html" class="link">
+                        <img src="assets/game-logos/fnf.png">
+                        <p>friday night funkin'</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="centered-box">
+            <p class="box-title">platformers</p>
+            <div class="flex-container">
+                <div class="game-box">
+                    <a href="games/vex6/index.html" class="link">
+                        <img src="assets/game-logos/vex6.png">
+                        <p>vex 6</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/celeste.html" class="link">
+                        <img src="assets/game-logos/celeste.png">
+                        <p>celeste pico-8</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/supermario64.html" class="link">
+                        <img src="assets/game-logos/supermario64.png">
+                        <p>super mario 64</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/n-gon/index.html" class="link">
+                        <img src="assets/game-logos/ngon.png">
+                        <p>n-gon</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/subway-surfers/index.html" class="link">
+                        <img src="assets/game-logos/subwaysurfers.png">
+                        <p>subway surfers</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/moto-x3m-pool-party/index.html" class="link">
+                        <img src="assets/game-logos/motox3mpoolparty.png">
+                        <p>moto x3m pool party</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/moto-x3m-winter/index.html" class="link">
+                        <img src="assets/game-logos/motox3mwinter.png">
+                        <p>moto x3m winter</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/snow-rider-3d/index.html" class="link">
+                        <img src="assets/game-logos/snowrider3d.png">
+                        <p>snow rider 3d</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/slope.html" class="link">
+                        <img src="assets/game-logos/slope.png">
+                        <p>slope</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/slope3/index.html" class="link">
+                        <img src="assets/game-logos/slope3.png">
+                        <p>slope 3</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="centered-box">
+            <p class="box-title">timing</p>
+            <div class="flex-container">
+                <div class="game-box">
+                    <a href="games/tombofthemask/index.html" class="link">
+                        <img src="assets/game-logos/totm.png">
+                        <p>tomb of the mask</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/subway-surfers/index.html" class="link">
+                        <img src="assets/game-logos/subwaysurfers.png">
+                        <p>subway surfers</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/stickmanhook.html" class="link">
+                        <img src="assets/game-logos/stickmanhook.png">
+                        <p>stickman hook</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/rooftop-snipers/index.html" class="link">
+                        <img src="assets/game-logos/rooftopsnipers.png">
+                        <p>rooftop snipers</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/getaway-shootout/index.html" class="link">
+                        <img src="assets/game-logos/getawayshootout.png">
+                        <p>getaway shootout</p>
+                    </a>
+                </div>
+                <div class="game-box">
+                    <a href="games/single-file-games/breakingthebank.html" class="link">
+                        <img src="assets/game-logos/breakingthebank.png">
+                        <p>breaking the bank</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/stealingthediamond.html" class="link">
+                        <img src="assets/game-logos/stealingthediamond.png">
+                        <p>stealing the diamond</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/infiltratingtheairship.html" class="link">
+                        <img src="assets/game-logos/infiltratingtheairship.png">
+                        <p>infiltrating the airship</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/fleeingthecomplex.html" class="link">
+                        <img src="assets/game-logos/fleeingthecomplex.png">
+                        <p>fleeing the complex</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="centered-box">
+            <p class="box-title">incremental</p>
+            <div class="flex-container">
+
+                <div class="game-box">
+                    <a href="games/level13/index.html" class="link">
+                        <img src="assets/game-logos/level13.png">
+                        <p>level 13</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/a-dark-room/index.html" class="link">
+                        <img src="assets/game-logos/adarkroom.png">
+                        <p>a dark room</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/cookie-clicker/index.html" class="link">
+                        <img src="assets/game-logos/cookieclicker.png">
+                        <p>cookie clicker</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/bitlife/index.html" class="link">
+                        <img src="assets/game-logos/bitlife.png">
+                        <p>bitlife</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/ducklife4.html" class="link">
+                        <img src="assets/game-logos/ducklife4.png">
+                        <p>duck life 4</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="centered-box">
+            <p class="box-title">rhythm</p>
+            <div class="flex-container">
+
+                <div class="game-box">
+                    <a href="games/fnf/index.html" class="link">
+                        <img src="assets/game-logos/fnf.png">
+                        <p>friday night funkin'</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/adofai/index.html" class="link">
+                        <img src="assets/game-logos/adofai.png">
+                        <p>a dance of fire and ice</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/osu/index.html" class="link">
+                        <img src="assets/game-logos/osu.png">
+                        <p>osu! web</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="centered-box">
+            <p class="box-title">MISC</p>
+            <div class="flex-container">
+                <div class="game-box">
+                    <a href="games/fruit-ninja/index.html" class="link">
+                        <img src="assets/game-logos/fruitninja.png">
+                        <p>fruit ninja</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/paperio2.html" class="link">
+                        <img src="assets/game-logos/paperio2.png">
+                        <p>paper.io 2</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/holeio.html" class="link">
+                        <img src="assets/game-logos/holeio.png">
+                        <p>hole.io</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/drive-mad/index.html" class="link">
+                        <img src="assets/game-logos/drivemad.png">
+                        <p>drive mad</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/circlo/index.html" class="link">
+                        <img src="assets/game-logos/circlo.png">
+                        <p>circloO</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/cell-machine/index.html" class="link">
+                        <img src="assets/game-logos/cellmachine.png">
+                        <p>cell machine</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/theimpossiblequiz.html" class="link">
+                        <img src="assets/game-logos/theimpossiblequiz.png">
+                        <p>the impossible quiz</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/gba-emulator/index.html" class="link">
+                        <img src="assets/game-logos/gba.png">
+                        <p>gba emulator</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/burrito-bison/index.html" class="link">
+                        <img src="assets/game-logos/burritobison.png">
+                        <p>burrito bison</p>
+                    </a>
+                </div>
+
+                <div class="game-box">
+                    <a href="games/single-file-games/learntofly3.html" class="link">
+                        <img src="assets/game-logos/learntofly3.png">
+                        <p>learn to fly 3</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
 
         <div class="centered-box">
             <p class="box-title">all games</p>
@@ -328,5 +637,96 @@
         </div>
 
     </div>
-    <script src="script.js"></script>
+    <div id="proxies-page" hidden>
+        <h1 class="big-title">proxies</h1>
+            <div class="centered-box">
+                <p class="box-title">fern</p>
+                <div class="flex-container">
+                    <a id="detect-fern" class="box-link">detect available fern links</a>
+                    <p id="fern-progress" class="box-text" hidden>can't see me :3</p>
+                    <a id="fern-link-1" class="box-link" hidden>i am link 1</a>
+                    <a id="fern-link-2" class="box-link" hidden>i am link 2</a>
+                    <a id="fern-link-3" class="box-link" hidden>i am link 3</a>
+                </div>
+            </div>
+            <div class="centered-box">
+                <p class="box-title">rammerhead</p>
+                <div class="flex-container">
+                    <a id="detect-rammerhead" class="box-link">detect available rammerhead links </a>
+                    <p id="rammerhead-progress" class="box-text" hidden>can't see me :3</p>
+                    <a id="rammerhead-link-1" class="box-link" hidden>i am link 1</a>
+                    <a id="rammerhead-link-2" class="box-link" hidden>i am link 2</a>
+                    <a id="rammerhead-link-3" class="box-link" hidden>i am link 3</a>
+                </div>
+            </div>
+             <div class="centered-box">
+                <p class="box-title">overcloaked</p>
+                <div class="flex-container">
+                    <a id="detect-overcloaked" class="box-link">detect available overcloaked links</a>
+                    <p id="overcloaked-progress" class="box-text" hidden>can't see me :3</p>
+                    <a id="overcloaked-link-1" class="box-link" hidden>i am link 1</a>
+                    <a id="overcloaked-link-2" class="box-link" hidden>i am link 2</a>
+                    <a id="overcloaked-link-3" class="box-link" hidden>i am link 3</a>
+                </div>
+            </div>
+            <div class="centered-box">
+                <p class="box-title">about link detection</p>
+                <div class="flex-container">
+                    <p class="box-text">your computer pings each link that we have to test access, and if it works; that means the link is valid. if any links don't work when they should, report it via the contact page.</p>
+                </div>
+            </div>
+    </div>
+
+    <div id="applications-page" hidden>
+        <h1 class="big-title">applications</h1>
+        <div class="centered-box">
+            <p class="box-title">settings</p>
+            <div class="flex-container">
+                <p class="box-text" id="aboutblanktext">about:blank cloaking</p>
+                <button class="submit-button" style="height: 40px; transform: translateY(7px);" id="aboutblankbutton">Enable</button>
+            </div>
+                <br>
+            <div class=flex-container>
+                <p class="box-text" id="lighttext">light mode</p>
+                <button class="submit-button" style="height: 40px; transform: translateY(7px);" id="lightbutton">Enable</button>
+            </div>
+            <br>
+            <div class=flex-container>
+                <p class="box-text" id="edutext">educational mode :)</p>
+                <button class="submit-button" style="height: 40px; transform: translateY(7px);" id="edubutton">Enable</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-page" hidden>
+        <h1 class="big-title">contact</h1>
+        <div class="centered-box" style="padding-top: 50px; padding-bottom: 50px;">
+            <div class="box">
+                <input type="text" id="proxy-box" class="input-box" placeholder="Donate a proxy link">
+                <button id="proxy-button" class="submit-button">Submit</button>
+            </div>
+            <div class="box">
+                <input type="text" id="game-req" class="input-box" placeholder="Request a game">
+                <button id="game-req-button" class="submit-button">Submit</button>
+            </div>
+            <div class="box">
+                <input type="text" id="report-bug" class="input-box" placeholder="Report a bug or error">
+                <button id="report-button" class="submit-button">Submit</button>
+            </div>
+            <div class="box">
+                <input type="text" id="contact-box" class="input-box" placeholder="Enter any message you want to send">
+                <button id="contact-button" class="submit-button">Submit</button>
+            </div>
+            <p class="box-text" id="button-feedback-p" hidden>can't see meeee :3</p>
+        </div>
+    </div>
+    <footer id="page-footer" hidden>
+        <div class="box-text" style="font-size: 12px;">
+            <p id="footer-text">created by turtle boi | tutel@tutel.dev | turtle.boi. on discord | <a class="footer-link" href="github.com/darkness-site/darkness-v2">site code</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="script.js"></script>
+
 </body>
