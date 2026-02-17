@@ -1,2 +1,4 @@
 # darkness-v2 
-yup very secret project :)
+a secret project no longer
+this is just an unbkocked games site i made in my free time that's miles better than the last one
+fork it if ya want
