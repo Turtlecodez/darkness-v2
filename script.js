@@ -1,3 +1,9 @@
+// init lumin
+Lumin.init({
+    container: '#lumingames',
+    theme: 'dark'
+});
+
 // about:blank cloaking
 function cloak() {
     var currentHost = window.location.hostname;
