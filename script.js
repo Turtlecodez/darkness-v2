@@ -418,7 +418,102 @@ const COLUMN_CONTENT = "content";
 const COLUMN_TYPE = "type";
 const COLUMN_DEVICE = "device_id";
 
+const MINUTE_LIMIT = 2;
+const DAY_LIMIT = 6;
+
+function getRateData() {
+    return JSON.parse(localStorage.getItem("rateLimitData") || "{}");
+}
+
+function saveRateData(data) {
+    localStorage.setItem("rateLimitData", JSON.stringify(data));
+}
+
+function canSend() {
+
+    const now = Date.now();
+
+    let data = getRateData();
+
+    if (!data.minute) {
+        data.minute = [];
+    }
+
+    if (!data.day) {
+        data.day = [];
+    }
+
+    // keep only timestamps from last minute
+    data.minute = data.minute.filter(
+        t => now - t < 60000
+    );
+
+    // keep only timestamps from last 24 hours
+    data.day = data.day.filter(
+        t => now - t < 86400000
+    );
+
+    saveRateData(data);
+
+    if (data.minute.length >= MINUTE_LIMIT) {
+
+        const oldest = data.minute[0];
+        const wait = Math.ceil(
+            (60000 - (now - oldest)) / 1000
+        );
+
+        return {
+            allowed: false,
+            message: `Rate limit hit. Wait ${wait}s`
+        };
+    }
+
+    if (data.day.length >= DAY_LIMIT) {
+
+        const oldest = data.day[0];
+        const waitHours = Math.ceil(
+            (86400000 - (now - oldest)) / 3600000
+        );
+
+        return {
+            allowed: false,
+            message: `Daily limit hit. Wait ${waitHours}h`
+        };
+    }
+
+    return {
+        allowed: true,
+        data
+    };
+}
+
+function recordSend() {
+
+    const now = Date.now();
+
+    let data = getRateData();
+
+    if (!data.minute) {
+        data.minute = [];
+    }
+
+    if (!data.day) {
+        data.day = [];
+    }
+
+    data.minute.push(now);
+    data.day.push(now);
+
+    saveRateData(data);
+}
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
 async function loadMessage() {
+
     console.log("Fetching site message...");
 
     const { data, error } = await supabase
@@ -434,46 +529,92 @@ async function loadMessage() {
 
     console.log("Message loaded:", data);
 
-    document.getElementById("message-text").textContent = data.date + " - " + data.message;;
+    document.getElementById("message-text").textContent =
+        data.date + " - " + data.message;
 }
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 function generateDeviceID() {
+
     console.log("Generating new deviceID...");
+
     const array = new Uint8Array(9);
+
     crypto.getRandomValues(array);
-    let b64 = btoa(String.fromCharCode(...array));
-    const id = b64.replace(/\+/g, "-").replace(/\//g, "_");
+
+    let b64 = btoa(
+        String.fromCharCode(...array)
+    );
+
+    const id = b64
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_");
+
     console.log("Generated deviceID:", id);
+
     return id;
 }
 
 function getDeviceID() {
+
     let id = localStorage.getItem("deviceID");
+
     if (!id) {
+
         console.log("No existing deviceID found.");
+
         id = generateDeviceID();
+
         localStorage.setItem("deviceID", id);
+
         console.log("Stored deviceID in localStorage.");
+
     } else {
+
         console.log("Existing deviceID found:", id);
     }
+
     return id;
 }
 
 const deviceID = getDeviceID();
 
 async function send(type, value, button) {
-    console.log("Sending submission:", { type, value });
+
+    console.log("Sending submission:", {
+        type,
+        value
+    });
 
     value = value.trim().substring(0, 500);
 
     if (!value) {
+
+        button.hidden = false;
         button.innerHTML = "Cannot be empty";
-        setTimeout(() => button.innerHTML = "Submit", 2000);
+
+        setTimeout(() => {
+            button.hidden = true;
+        }, 2000);
+
         return;
     }
+
+    const rateCheck = canSend();
+
+    if (!rateCheck.allowed) {
+
+        button.hidden = false;
+        button.innerHTML = rateCheck.message;
+
+        setTimeout(() => {
+            button.hidden = true;
+        }, 3000);
+
+        return;
+    }
+
+    button.hidden = false;
+    button.innerHTML = "Sending...";
 
     const { error, status } = await supabase
         .from(TABLE_NAME)
@@ -485,20 +626,28 @@ async function send(type, value, button) {
 
     console.log("Insert status:", status);
 
-    button.removeAttribute("hidden");
-
     if (error) {
+
         console.error("Submission error:", error);
+
         button.innerHTML = "Request failed.";
+
     } else {
+
         console.log("Submission successful.");
+
+        recordSend();
+
         button.innerHTML = "Success! Text sent.";
     }
 
-    setTimeout(() => button.hidden = true, 3000);
+    setTimeout(() => {
+        button.hidden = true;
+    }, 3000);
 }
 
 async function checkResponsesOnce() {
+
     console.log("Using deviceID:", deviceID);
 
     const { data, error, status } = await supabase
@@ -506,52 +655,77 @@ async function checkResponsesOnce() {
         .select("id, message, seen, device_id")
         .eq("device_id", deviceID)
         .eq("seen", false)
-        .order("created_at", { ascending: true });
+        .order("created_at", {
+            ascending: true
+        });
 
     console.log("Fetch status:", status);
 
     if (error) {
+
         console.error("FETCH ERROR:", error);
         console.log("checking response table failed");
+
         return;
     }
 
     console.log("Fetched rows:", data);
 
     if (!data || data.length === 0) {
+
         console.log("No unseen responses found.");
+
         return;
     }
 
-    console.log(`Found ${data.length} unseen response(s).`);
+    console.log(
+        `Found ${data.length} unseen response(s).`
+    );
 
     data.forEach(r => {
-        console.log("displaying popup for ID:", r.id);
+
+        console.log(
+            "displaying popup for ID:",
+            r.id
+        );
+
         showPopup(r.message);
     });
 
     const ids = data.map(r => r.id);
+
     console.log("marking IDs as seen:", ids);
 
-    const { error: updateError, status: updateStatus } = await supabase
+    const {
+        error: updateError,
+        status: updateStatus
+    } = await supabase
         .from(RESPONSES_TABLE)
-        .update({ seen: true })
+        .update({
+            seen: true
+        })
         .in("id", ids);
 
     console.log("update status:", updateStatus);
 
     if (updateError) {
-        console.error("error:", updateError);
-    } else {
-        console.log("response(s) successfully marked as seen.");
-    }
 
+        console.error("error:", updateError);
+
+    } else {
+
+        console.log(
+            "response(s) successfully marked as seen."
+        );
+    }
 }
 
 function showPopup(message) {
 
     const popup = document.createElement("div");
-    popup.innerText = "from the darkness admins: " + message;
+
+    popup.innerText =
+        "from the darkness admins: " + message;
 
     Object.assign(popup.style, {
         position: "fixed",
@@ -568,11 +742,15 @@ function showPopup(message) {
     });
 
     document.body.appendChild(popup);
+
     console.log("popup added to DOM.");
 
     setTimeout(() => {
+
         popup.remove();
+
         console.log("popup removed from DOM.");
+
     }, 5000);
 }
 
